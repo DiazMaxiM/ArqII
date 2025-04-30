@@ -67,7 +67,7 @@ class ProductControllerTest {
         }
     }
 
-    
+
 
     @Nested @DisplayName("POST /products")
     class Create {
