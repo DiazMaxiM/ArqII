@@ -8,16 +8,14 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
-@Builder(toBuilder = true)
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 @Getter
 @Setter
 @Document(collection = "money_accounts")
 public class MoneyAccountDocument {
 
-    @Id
-    private String id;
+    @Id   private Long id;
+
 
     /** Referencia a otro documento en MongoDB */
     @DBRef

@@ -2,6 +2,8 @@ package ar.edu.mercadogratis.application.service;
 
 import ar.edu.mercadogratis.infrastructure.adapters.out.persistence.repository.PurchaseProductRepository;
 import ar.edu.mercadogratis.domain.model.*;
+import ar.edu.mercadogratis.usecase.CreatePurchaseUseCase;
+import ar.edu.mercadogratis.usecase.ListPurchaseUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +12,7 @@ import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
-public class PurchaseService {
+public class PurchaseService implements ListPurchaseUseCase, CreatePurchaseUseCase {
 
     private final UserService userService;
     private final ProductService productService;
@@ -31,7 +33,7 @@ public class PurchaseService {
                 .map(product -> createPurchase(purchaseRequest, product))
                 .map(this::registerTransaction)
                 .orElseThrow(() -> new ValidationException("Invalid product"));
-
+System.out.println(purchaseProduct.toString());
         return purchaseProductRepository.save(purchaseProduct);
     }
 

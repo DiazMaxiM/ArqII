@@ -1,5 +1,6 @@
 package ar.edu.mercadogratis.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 
@@ -11,8 +12,11 @@ import java.util.Objects;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Product extends BaseEntity {
+@Data
+public class Product {
 
+
+    private Long id;
     private String name;
 
     private String description;

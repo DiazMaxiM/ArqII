@@ -9,8 +9,10 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Getter
 @Setter
-public class MoneyAccount extends BaseEntity {
+@Data
+public class MoneyAccount  {
 
+    private String id;
     private User user;
 
     private BigDecimal balance;

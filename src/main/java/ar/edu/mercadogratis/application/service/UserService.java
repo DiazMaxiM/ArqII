@@ -2,16 +2,18 @@ package ar.edu.mercadogratis.application.service;
 
 import ar.edu.mercadogratis.application.port.out.UserPersistencePort;
 import ar.edu.mercadogratis.domain.model.User;
+import ar.edu.mercadogratis.usecase.*;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
 @RequiredArgsConstructor
 @Service("userService")
-public class UserService {
+public class UserService implements AddUserUseCase , LoginUserUseCase, ChangePassUserUseCase, ForgetUserUseCase {
 
     private final UserPersistencePort UserAdapter;
     private final IEmailService emailService;
@@ -19,7 +21,7 @@ public class UserService {
     private final MoneyAccountService moneyAccountService;
 
     @Transactional
-    public User getUser(String id) {
+    public User getUser(Long id) {
         return UserAdapter.findById(id).orElse(null);
     }
 
@@ -29,15 +31,20 @@ public class UserService {
     }
 
     @Transactional
-    public String addUser(User user) {
-        String generatedPwd = passwordGeneratorService.generateRandom();
-        sendRegistrationEmail(user, generatedPwd);
-        user.setPassword(generatedPwd);
-
-        User savedUser = UserAdapter.save(user);
-        moneyAccountService.registerAccount(savedUser);
-
-        return savedUser.getId();
+    public Long addUser(User user) {
+        User userLogin = getUserForMail(user.getEmail());
+        Long userId;
+        if (userLogin == null) {
+            String generatedPwd = passwordGeneratorService.generateRandom();
+            sendRegistrationEmail(user, generatedPwd);
+            user.setPassword(generatedPwd);
+            User savedUser = UserAdapter.save(user);
+            moneyAccountService.registerAccount(savedUser);
+            userId = savedUser.getId();
+        } else {
+            userId = userLogin.getId();
+        }
+        return userId;
     }
 
     private void sendRegistrationEmail(User user, String generatedPwd) {
@@ -58,8 +65,8 @@ public class UserService {
     }
 
     @Transactional
-    public String changePassword(JSONObject userWithNewPassword) throws RuntimeException, JSONException {
-        String idUser = null;
+    public Long changePassword(JSONObject userWithNewPassword) throws RuntimeException, JSONException {
+        Long idUser = null;
 
         User user = this.getUserForMail(userWithNewPassword.getString("email"));
 
@@ -73,5 +80,12 @@ public class UserService {
             throw new RuntimeException("Error User o Password Ingresada");
         }
         return idUser;
+    }
+
+    @Transactional
+    @Override
+    public Boolean login(User user) {
+        User userLogin = getUserForMail(user.getEmail());
+        return (userLogin != null && user.getPassword().equals(userLogin.getPassword()));
     }
 }

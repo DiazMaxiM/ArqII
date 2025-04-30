@@ -11,16 +11,14 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 @Getter
 @Setter
 @Document(collection = "purchases")
 public class PurchaseProductDocument {
 
-    @Id
-    private String id;
+    @Id   private Long id;
+
 
     /** Referencia al documento Product */
     @DBRef

@@ -6,6 +6,6 @@ import java.math.BigDecimal;
 
 @Data
 public class AddFundsRequest {
-    private String userId;
+    private Long userId;
     private BigDecimal amount;
 }

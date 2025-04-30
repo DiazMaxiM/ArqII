@@ -1,20 +1,18 @@
 package ar.edu.mercadogratis.infrastructure.adapters.out.persistence.entity;
 
-import lombok.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
+@Document("users")
+@Data
 @Getter
 @Setter
-@ToString
-@Document(collection = "users")
-@Builder(toBuilder = true)
-@AllArgsConstructor
-@RequiredArgsConstructor
 public class UserDocument {
-    @Id
-    private String id;
+    @Id   private Long id;
     private String name;
     private String lastName;
     //@Column(name = "email", nullable = false, unique = true)

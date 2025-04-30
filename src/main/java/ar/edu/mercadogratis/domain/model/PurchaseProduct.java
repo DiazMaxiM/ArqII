@@ -10,7 +10,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Getter
 @Setter
-public class PurchaseProduct extends BaseEntity {
+
+public class PurchaseProduct  {
+
 
     private Product product;
 
@@ -26,4 +28,5 @@ public class PurchaseProduct extends BaseEntity {
     public BigDecimal getPrice() {
         return product.getPrice();
     }
+
 }

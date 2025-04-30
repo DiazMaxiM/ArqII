@@ -30,7 +30,7 @@ public class UserAdapter implements UserPersistencePort {
     }
 
     @Override
-    public Optional<User> findById(String id) {
+    public Optional<User> findById(Long id) {
         return repo.findById(id)
                 .map(this::toDomain);
     }

@@ -1,6 +1,6 @@
 package ar.edu.mercadogratis.application.service;
 
-import ar.edu.mercadogratis.config.EmailProvider;
+import ar.edu.mercadogratis.infrastructure.adapters.out.config.EmailProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.apache.commons.mail.Email;
