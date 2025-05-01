@@ -141,10 +141,13 @@ Este diagrama muestra los actores externos que interactúan con el sistema y los
 
 ###Instalacion y Tests.
 
-![](https://drive.google.com/file/d/1pW_8zNpVZPn0ZTmnJFko5JK6tuEzzUIY/view?usp=sharing)
+
+<video src="https://drive.google.com/file/d/1pW_8zNpVZPn0ZTmnJFko5JK6tuEzzUIY/view?usp=sharing" controls="controls" style="max-width: 730px;">
+</video>
 
 ###Postman
 
-![](https://drive.google.com/file/d/1RFCQoDhj8RzvLmqXW8pDY_e2o-tMkMAQ/view?usp=sharing)
+<video src="https://drive.google.com/file/d/1RFCQoDhj8RzvLmqXW8pDY_e2o-tMkMAQ/view?usp=sharing" controls="controls" style="max-width: 730px;">
+</video>
 
 
