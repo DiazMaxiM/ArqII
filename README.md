@@ -139,98 +139,12 @@ Este diagrama muestra los actores externos que interactúan con el sistema y los
 
 ## API - REST 
 
-```bash
-# 1. addUser
-curl -X POST http://localhost:8080/users \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email": "juan@example.com",
-    "password": "miPass123",
-    "name": "Juan Pérez"
-  }'
+###Instalacion y Tests.
 
-# 2. login
-curl -X POST http://localhost:8080/users/login \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email": "juan@example.com",
-    "password": "miPass123"
-  }'
+![](https://drive.google.com/file/d/1pW_8zNpVZPn0ZTmnJFko5JK6tuEzzUIY/view?usp=sharing)
 
-# 3. forgetPassword
-curl -X POST http://localhost:8080/users/forget-password \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email": "juan@example.com"
-  }'
+###Postman
 
-# 4. changePassword
-curl -X POST http://localhost:8080/users/change-password \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email": "juan@example.com",
-    "password": "miPass123",
-    "newPassword": "nuevaPass456"
-  }'
+![](https://drive.google.com/file/d/1RFCQoDhj8RzvLmqXW8pDY_e2o-tMkMAQ/view?usp=sharing)
 
-# 5. createPurchase
-curl -X POST http://localhost:8080/purchases \
-  -H "Content-Type: application/json" \
-  -d '{
-    "productId": 1,
-    "buyerEmail": "juan@example.com",
-    "quantity": 2
-  }'
 
-# 6. listPurchases
-curl "http://localhost:8080/purchases?buyerEmail=juan@example.com"
-
-# 7. getProduct
-curl "http://localhost:8080/products/1"
-
-# 8. deleteProduct
-curl -X DELETE "http://localhost:8080/products/1"
-
-# 9. saveProduct
-curl -X POST http://localhost:8080/products \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "Producto XYZ",
-    "price": 150.0,
-    "seller": "vendedor@example.com",
-    "stock": 10
-  }'
-
-# 10. updateProduct
-curl -X PUT http://localhost:8080/products/1 \
-  -H "Content-Type: application/json" \
-  -d '{
-    "id": 1,
-    "name": "Producto XYZ (edición)",
-    "price": 175.0,
-    "seller": "vendedor@example.com",
-    "stock": 8
-  }'
-
-# 11. listProducts
-curl "http://localhost:8080/products?seller=vendedor@example.com"
-
-# 12. searchProduct
-curl -X POST http://localhost:8080/products/search \
-  -H "Content-Type: application/json" \
-  -d '{
-    "query": "XYZ",
-    "minPrice": 100.0,
-    "maxPrice": 200.0,
-    "seller": "vendedor@example.com"
-  }'
-
-# 13. getFunds
-curl "http://localhost:8080/accounts/1/funds"
-
-# 14. addFunds
-curl -X POST http://localhost:8080/accounts/1/funds \
-  -H "Content-Type: application/json" \
-  -d '{
-    "amount": 50.0
-  }'
